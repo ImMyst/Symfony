@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ListRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ShoppingItemRepository")
  */
-class List
+class ShoppingItem
 {
     /**
      * @ORM\Id()
@@ -15,9 +15,14 @@ class List
      * @ORM\Column(type="integer")
      */
     private $id;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $title;
 
-    private $name;
+    /**
+     * @ORM\Column(type="integer")
+     */
 
     private $category_id;
-
 }

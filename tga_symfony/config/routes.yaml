@@ -2,6 +2,6 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-app_homepage:
+app_shipping_list:
     path: /
-    controller: App\Controller\Homepage::home
+    controller: App\Controller\ShippingList::shipping_list

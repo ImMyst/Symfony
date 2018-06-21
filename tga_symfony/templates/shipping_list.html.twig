@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <table class="table table-striped">
+    <thread>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thread>
+    <tbody>
+      {% for post in posts %}
+        <tr>
+          <td>{{ post.category_id }}</td>
+          <td>{{ post.name}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
