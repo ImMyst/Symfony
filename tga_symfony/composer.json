@@ -4,6 +4,7 @@
     "require": {
         "php": "^7.1.3",
         "ext-iconv": "*",
+        "snilius/twig-sort-by-field": "^0.1.5",
         "symfony/asset": "^4.1",
         "symfony/console": "^4.1",
         "symfony/expression-language": "^4.1",

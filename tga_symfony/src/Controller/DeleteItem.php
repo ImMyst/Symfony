@@ -2,7 +2,9 @@
 namespace App\Controller;
 
 use App\Entity\ShoppingItem;
+use App\Entity\ShoppingCategory;
 use App\Repository\ShoppingItemRepository;
+use App\Repository\ShoppingCategoryRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormFactoryInterface;

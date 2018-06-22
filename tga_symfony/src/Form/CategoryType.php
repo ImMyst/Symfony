@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\ShoppingItem;
 use App\Entity\ShoppingCategory;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -10,13 +9,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PostType extends AbstractType
+class CategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, array(
-              'label' => 'Produit  ',
+            ->add('name', TextType::class, array(
+              'label' => 'Catégorie  ',
             ))
         ;
     }
@@ -24,7 +23,7 @@ class PostType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => ShoppingItem::class,
+            'data_class' => ShoppingCategory::class,
         ]);
     }
 }

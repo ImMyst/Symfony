@@ -9,6 +9,21 @@
         {% block stylesheets %}{% endblock %}
 
     </head>
+    <nav class="navbar navbar-light bg-light">
+      <a href="/"><span class="navbar-brand mb-0 h1">Liste de courses</span></a>
+      <a href="/categories"><span class="navbar-brand mb-0 h1">Catégories</span></a>
+    </nav>
+
+    <style media="screen">
+      .navbar {
+        background-color: rgb(228, 228, 228);
+        margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif;
+      }
+
+      navbar.a {
+        color: black;
+      }
+    </style>
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
