@@ -16,12 +16,13 @@ class ItemType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, array(
-              'label' => 'Produit',
+              'label' => 'Produit       ',
             ))
-            ->add('category_id', EntityType::class, [
+            ->add('category', EntityType::class, [
+              'label' => 'Catégorie   ',
               'class' => ShoppingItem::class,
-              'choice_label' => function($category_id) {
-                return $category_id->__toString();
+              'choice_label' => function($category) {
+                return $category->getCategory();
               },
             ])
         ;

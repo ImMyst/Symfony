@@ -27,7 +27,7 @@ class ShoppingItem
      * @ORM\ManyToOne(targetEntity="App\Entity\ShoppingCategory", inversedBy="items")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $category_id;
+    private $category;
 
     /**
      * Get the value of Id
@@ -77,21 +77,20 @@ class ShoppingItem
         return $this;
     }
 
-    public function getCategoryId(): ?ShoppingCategory
+    public function getCategory(): ?ShoppingCategory
     {
-        return $this->category_id;
+        return $this->category;
     }
 
-    public function setCategoryId(?ShoppingCategory $category_id): self
+    public function setCategory(?ShoppingCategory $category): self
     {
-        $this->category_id = $category_id;
+        $this->category = $category;
 
         return $this;
     }
 
-
-    public function __toString()
-    {
-        return(string) $this->category_id;
+    public function __toString(){
+      return $this->category;
     }
+
 }

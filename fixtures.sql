@@ -69,14 +69,14 @@ INSERT INTO `shopping_category` (`id`, `name`) VALUES
 CREATE TABLE `shopping_item` (
   `id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_id_id` int(11) NOT NULL
+  `category` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `shopping_item`
 --
 
-INSERT INTO `shopping_item` (`id`, `title`, `category_id_id`) VALUES
+INSERT INTO `shopping_item` (`id`, `title`, `category`) VALUES
 (1, 'Croquettes', 1),
 (2, 'Litière 10kg', 1),
 (3, 'Couches', 2);
@@ -102,7 +102,7 @@ ALTER TABLE `shopping_category`
 --
 ALTER TABLE `shopping_item`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_6612795F9777D11E` (`category_id_id`);
+  ADD KEY `IDX_6612795F9777D11E` (`category`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -128,7 +128,7 @@ ALTER TABLE `shopping_item`
 -- Contraintes pour la table `shopping_item`
 --
 ALTER TABLE `shopping_item`
-  ADD CONSTRAINT `FK_6612795F9777D11E` FOREIGN KEY (`category_id_id`) REFERENCES `shopping_category` (`id`);
+  ADD CONSTRAINT `FK_6612795F9777D11E` FOREIGN KEY (`category`) REFERENCES `shopping_category` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -91,7 +91,7 @@ class ShoppingCategory
     {
         if (!$this->id->contains($id)) {
             $this->id[] = $id;
-            $id->setCategoryId($this);
+            $id->setCategory($this);
         }
 
         return $this;
@@ -102,12 +102,17 @@ class ShoppingCategory
         if ($this->id->contains($id)) {
             $this->id->removeElement($id);
             // set the owning side to null (unless already changed)
-            if ($id->getCategoryId() === $this) {
-                $id->setCategoryId(null);
+            if ($id->getCategory() === $this) {
+                $id->setCategory(null);
             }
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+      return $this->name;
     }
 
 }

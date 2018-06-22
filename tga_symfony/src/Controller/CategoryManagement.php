@@ -19,7 +19,7 @@ class CategoryManagement extends Controller
     /**
      * @Route("/categories", name="category_management")
      */
-     public function shippingList(Request $request, Environment $twig, RegistryInterface $doctrine, FormFactoryInterface $formFactory) {
+     public function addCategory(Request $request, Environment $twig, RegistryInterface $doctrine, FormFactoryInterface $formFactory) {
        {
              $category = new ShoppingCategory();
              $form = $this->createForm(CategoryType::class, $category);
