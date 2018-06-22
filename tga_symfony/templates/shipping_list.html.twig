@@ -1,34 +1,40 @@
 {% extends 'base.html.twig' %}
+
 {% block body %}
 
 <style>
+.wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
 
 </style>
-<div class="wrapper">
 
+<div class="wrapper">
+  <h1>Ma liste de courses</h1>
+<br>
+<h3>Choses à acheter</h3>
+<br>
   <table class="table table-striped">
-    <thread>
-      <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thread>
+    {% if items is empty%}
+    <div class="alert alert-success">
+      <p>La liste de course est vide 👍</p>
+    </div>
+    {% endif %}
     <tbody>
       {% for item in items|sort %}
         <tr>
           <td>{{ item.id }}</td>
           <td>{{ item.title }}</td>
-          <td><a href="/suppression_produit/" + '$id'>Supprimer</a></td>
+          <td><a href="/suppression-produit/" + '$id'>Supprimer</a></td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
 <br>
 
+<h3>Ajouter un produit</h3>
+<br>
   {{ form_start(form) }}
   {{ form_widget(form) }} <br>
-  <button class="btn btn-primary">Ajouter un produit</button>
+  <a href="/ajout-produit"><button class="btn btn-primary">Ajouter un produit</button></a>
   {{ form_end(form) }}
 </div>
 

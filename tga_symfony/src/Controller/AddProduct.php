@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\ShoppingItem;
@@ -11,21 +12,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class DeleteItem extends Controller
+class AddProduct extends Controller
 {
     /**
-     * @Route("/suppression-produit", name="delete_item")
+     * @Route("/ajout-produit", name="add_product")
      */
-    public function delete_item(Request $request, RegistryInterface $doctrine)
+     
+    public function add_product()
     {
-      $em = $this->getDoctrine()->getManager();
+        return $this->render('/add_product.html.twig'
 
-      if($request->METHOD_DELETE('delete'))
-          {
-            $em->remove($items);
-          }
-          //the code that displays your table
-        return $this->render('delete_item.html.twig'
-        );
+      );
     }
 }
