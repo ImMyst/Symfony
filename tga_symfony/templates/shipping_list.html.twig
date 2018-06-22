@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+
+<style>
+
+</style>
+<div class="wrapper">
+
   <table class="table table-striped">
     <thread>
       <tr>
@@ -9,11 +15,11 @@
       </tr>
     </thread>
     <tbody>
-      {% for item in items %}
+      {% for item in items|sort %}
         <tr>
           <td>{{ item.id }}</td>
           <td>{{ item.title }}</td>
-          <td><a href="">Supprimer</a></td>
+          <td><a href="/suppression_produit/" + '$id'>Supprimer</a></td>
         </tr>
       {% endfor %}
     </tbody>
@@ -24,4 +30,6 @@
   {{ form_widget(form) }} <br>
   <button class="btn btn-primary">Ajouter un produit</button>
   {{ form_end(form) }}
+</div>
+
 {% endblock %}

@@ -12,18 +12,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class ShippingList extends Controller {
+class ShippingList extends Controller
+
+{
+  /**
+   * @Route("/", name="shipping_list")
+   */
 
   public function shipping_list(Request $request, Environment $twig, RegistryInterface $doctrine, FormFactoryInterface $formFactory) {
-          $items = $doctrine->getRepository(ShoppingItem::class)->findBy([
-            'title' => 'Keyboard'
-          ]);
-          $form = $formFactory->createBuilder(PostType::class, isset ($items[0]))->getForm();
+          $items = $doctrine->getRepository(ShoppingItem::class)->findAll();
+          $form = $formFactory->createBuilder(PostType::class, $items[0])->getForm();
+          $em = $this->getDoctrine()->getManager();
 
           $form->handleRequest($request);
 
           if ($form->isSubmitted() && $form->isValid()) {
-            $doctrine->getEntityManager()->flush();
+            $em->flush();
           }
 
           return new Response($twig->render('/shipping_list.html.twig', [
