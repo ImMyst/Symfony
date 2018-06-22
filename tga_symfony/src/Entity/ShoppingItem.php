@@ -21,9 +21,9 @@ class ShoppingItem
     private $title;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ShoppingCategory", inversedBy="items")
+     * @ORM\JoinColumn(nullable=false)
      */
-
     private $category_id;
 
     /**
@@ -74,28 +74,15 @@ class ShoppingItem
         return $this;
     }
 
-    /**
-     * Get the value of Category Id
-     *
-     * @return mixed
-     */
-    public function getCategoryId()
+    public function getCategoryId(): ?ShoppingCategory
     {
-        return $this->category_id;
+        return $this->items;
     }
 
-    /**
-     * Set the value of Category Id
-     *
-     * @param mixed category_id
-     *
-     * @return self
-     */
-    public function setCategoryId($category_id)
+    public function setCategoryId(?ShoppingCategory $category_id): self
     {
-        $this->category_id = $category_id;
+        $this->items = $category_id;
 
         return $this;
     }
-
 }

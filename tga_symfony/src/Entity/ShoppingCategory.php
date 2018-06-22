@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,14 +15,21 @@ class ShoppingCategory
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @ORM\OneToMany(targetEntity="App\Entity\ShoppingItem", mappedBy="id")
      */
-    private $id;
+     private $id;
+
+     public function __construct()
+     {
+         $this->id = new ArrayCollection();
+     }
 
     /**
      * @ORM\Column(type="string")
      */
 
     private $name;
+
 
     /**
      * Get the value of Id
@@ -66,6 +75,37 @@ class ShoppingCategory
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ShoppingItem[]
+     */
+    public function getItems(): Collection
+    {
+        return $this->id;
+    }
+
+    public function addItem(ShoppingItem $id): self
+    {
+        if (!$this->id->contains($id)) {
+            $this->id[] = $id;
+            $id->setCategoryId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItem(ShoppingItem $id): self
+    {
+        if ($this->id->contains($id)) {
+            $this->id->removeElement($id);
+            // set the owning side to null (unless already changed)
+            if ($id->getCategoryId() === $this) {
+                $id->setCategoryId(null);
+            }
+        }
 
         return $this;
     }

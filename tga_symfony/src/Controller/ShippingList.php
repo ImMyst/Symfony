@@ -15,8 +15,10 @@ use Twig\Environment;
 class ShippingList extends Controller {
 
   public function shipping_list(Request $request, Environment $twig, RegistryInterface $doctrine, FormFactoryInterface $formFactory) {
-          $items = $doctrine->getRepository(ShoppingItem::class)->findAll();
-          $form = $formFactory->createBuilder(PostType::class, $items[0])->getForm();
+          $items = $doctrine->getRepository(ShoppingItem::class)->findBy([
+            'title' => 'Keyboard'
+          ]);
+          $form = $formFactory->createBuilder(PostType::class, isset ($items[0]))->getForm();
 
           $form->handleRequest($request);
 
