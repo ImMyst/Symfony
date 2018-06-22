@@ -19,21 +19,27 @@ class CategoryManagement extends Controller
     /**
      * @Route("/categories", name="category_management")
      */
-    public function categoryManagement(Request $request, Environment $twig, RegistryInterface $doctrine, FormFactoryInterface $formFactory)
-    {
-      $items = $doctrine->getRepository(ShoppingCategory::class)->findAll();
-      $form = $formFactory->createBuilder(CategoryType::class, $items[0])->getForm();
-      $em = $this->getDoctrine()->getManager();
+     public function shippingList(Request $request, Environment $twig, RegistryInterface $doctrine, FormFactoryInterface $formFactory) {
+       {
+             $category = new ShoppingCategory();
+             $form = $this->createForm(CategoryType::class, $category);
 
-      $form->handleRequest($request);
+             $form->handleRequest($request);
+             if ($form->isSubmitted() && $form->isValid()) {
 
-      if ($form->isSubmitted() && $form->isValid()) {
-        $em->flush();
-      }
+               $em = $this->getDoctrine()->getManager();
+               $em->persist($category);
+               $em->flush();
+             }
 
-      return new Response($twig->render('/category_management.html.twig', [
-        'items' => $items,
-        'form' => $form->createView()
-      ]));
-    }
+             $items = $doctrine->getRepository(ShoppingCategory::class)->findAll();
+
+
+             return new Response($twig->render('/category_management.html.twig', [
+               'items' => $items,
+               'form' => $form->createView()
+             ]));
+
+     }
+   }
 }

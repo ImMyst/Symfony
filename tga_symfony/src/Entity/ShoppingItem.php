@@ -89,12 +89,9 @@ class ShoppingItem
         return $this;
     }
 
-     /**
-     *
-     * @return string String representation of this class
-     */
+
     public function __toString()
     {
-        return $this->category_id;
+        return(string) $this->category_id;
     }
 }

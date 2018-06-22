@@ -15,10 +15,14 @@ class ItemType extends AbstractType
       public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class)
+            ->add('title', TextType::class, array(
+              'label' => 'Produit',
+            ))
             ->add('category_id', EntityType::class, [
               'class' => ShoppingItem::class,
-              'choice_label' => 'category_id',
+              'choice_label' => function($category_id) {
+                return $category_id->__toString();
+              },
             ])
         ;
     }

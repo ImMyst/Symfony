@@ -22,7 +22,7 @@ class DeleteItem extends Controller
     {
       $em = $this->getDoctrine()->getManager();
 
-      if($request->('delete'))
+      if($request->METHOD_DELETE('delete'))
           {
             $em->remove($items);
           }
