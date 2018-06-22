@@ -15,8 +15,10 @@ class ItemType extends AbstractType
       public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, [
-              'label' => 'Produit  ',
+            ->add('title', TextType::class)
+            ->add('category_id', EntityType::class, [
+              'class' => ShoppingItem::class,
+              'choice_label' => 'category_id',
             ])
         ;
     }

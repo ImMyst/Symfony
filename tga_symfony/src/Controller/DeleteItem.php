@@ -18,11 +18,11 @@ class DeleteItem extends Controller
     /**
      * @Route("/suppression-produit", name="delete_item")
      */
-    public function delete_item(Request $request, RegistryInterface $doctrine)
+    public function deleteItem(Request $request, RegistryInterface $doctrine)
     {
       $em = $this->getDoctrine()->getManager();
 
-      if($request->METHOD_DELETE('delete'))
+      if($request->('delete'))
           {
             $em->remove($items);
           }

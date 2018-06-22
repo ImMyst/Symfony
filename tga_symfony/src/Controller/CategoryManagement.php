@@ -19,7 +19,7 @@ class CategoryManagement extends Controller
     /**
      * @Route("/categories", name="category_management")
      */
-    public function category_management(Request $request, Environment $twig, RegistryInterface $doctrine, FormFactoryInterface $formFactory)
+    public function categoryManagement(Request $request, Environment $twig, RegistryInterface $doctrine, FormFactoryInterface $formFactory)
     {
       $items = $doctrine->getRepository(ShoppingCategory::class)->findAll();
       $form = $formFactory->createBuilder(CategoryType::class, $items[0])->getForm();

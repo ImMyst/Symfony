@@ -20,7 +20,7 @@ class AddProduct extends Controller
      * @Route("/ajout-produit", name="add_product")
      */
 
-    public function add_product()
+    public function addProduct()
     {
         return $this->render('/add_product.html.twig'
 

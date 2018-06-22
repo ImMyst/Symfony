@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ShoppingItemRepository")
@@ -17,12 +19,13 @@ class ShoppingItem
     private $id;
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $title;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\ShoppingCategory", inversedBy="items")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $category_id;
 
@@ -76,13 +79,22 @@ class ShoppingItem
 
     public function getCategoryId(): ?ShoppingCategory
     {
-        return $this->items;
+        return $this->category_id;
     }
 
     public function setCategoryId(?ShoppingCategory $category_id): self
     {
-        $this->items = $category_id;
+        $this->category_id = $category_id;
 
         return $this;
+    }
+
+     /**
+     *
+     * @return string String representation of this class
+     */
+    public function __toString()
+    {
+        return $this->category_id;
     }
 }
