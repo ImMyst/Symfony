@@ -10,12 +10,18 @@
       </tr>
     </thread>
     <tbody>
-      {% for post in posts %}
+      {% for item in items %}
         <tr>
-          <td>{{ post.category_id }}</td>
-          <td>{{ post.name}}</td>
+          <td>{{ item.id }}</td>
+          <td>{{ item.title}}</td>
+          <td><a href="">Supprimer</a></td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
+<br>
+  {{ form_start(form) }}
+  {{ form_widget(form) }} <br>
+  <button>Ajouter un produit</button>
+  {{ form_end(form) }}
 {% endblock %}
