@@ -1,4 +1,10 @@
 {
+    "barryvdh/laravel-ide-helper": {
+        "version": "v2.4.3"
+    },
+    "barryvdh/reflection-docblock": {
+        "version": "v2.0.4"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -71,11 +77,26 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
+    "illuminate/console": {
+        "version": "v5.6.26"
+    },
+    "illuminate/contracts": {
+        "version": "v5.6.26"
+    },
+    "illuminate/filesystem": {
+        "version": "v5.6.26"
+    },
+    "illuminate/support": {
+        "version": "v5.6.26"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
     "monolog/monolog": {
         "version": "1.23.0"
+    },
+    "nesbot/carbon": {
+        "version": "1.31.0"
     },
     "nikic/php-parser": {
         "version": "v4.0.2"
@@ -130,6 +151,9 @@
     },
     "symfony/cache": {
         "version": "v4.1.0"
+    },
+    "symfony/class-loader": {
+        "version": "v3.4.11"
     },
     "symfony/config": {
         "version": "v4.1.0"
