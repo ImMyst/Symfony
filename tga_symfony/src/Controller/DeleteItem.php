@@ -17,21 +17,28 @@ class DeleteItem extends Controller
 {
     /**
      * @Route("/suppression-produit/{itemId}", name="delete_item")
+     * @param Environment $twig
+     * @param RegistryInterface $doctrine
+     * @param $id
+     * @return Response
      */
-    public function deleteItem(Request $request, RegistryInterface $doctrine)
-    {
-        $items = new ShoppingItem();
-
-
-
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($items);
-
-
-        $items = $doctrine->getRepository(ShoppingItem::class)->findAll();
-
-          //the code that displays your table
-        return $this->render('delete_item.html.twig'
-        );
-    }
+//    public function deleteItem(Environment $twig, RegistryInterface $doctrine, $id)
+//    {
+//            $em = $this->getDoctrine()->getManager();
+//            $items = $em->getRepository('ShoppingItem')->findOneBy(array('id' => $id));
+//            $em->remove($items);
+//            $em->flush();
+//
+//        $items = $doctrine->getRepository(ShoppingCategory::class)->findAll();
+//
+//
+//        try {
+//            return new Response($twig->render('/shipping_list.html.twig', [
+//                'items' => $items
+//            ]));
+//        } catch (\Twig_Error_Loader $e) {
+//        } catch (\Twig_Error_Runtime $e) {
+//        } catch (\Twig_Error_Syntax $e) {
+//        }
+//    }
 }

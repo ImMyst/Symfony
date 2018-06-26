@@ -97,19 +97,6 @@ class ShoppingCategory
         return $this;
     }
 
-    public function removeItem(ShoppingItem $id): self
-    {
-        if ($this->id->contains($id)) {
-            $this->id->removeElement($id);
-            // set the owning side to null (unless already changed)
-            if ($id->getCategory() === $this) {
-                $id->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function __toString()
     {
       return $this->name;

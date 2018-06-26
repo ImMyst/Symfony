@@ -19,6 +19,10 @@ class AddProduct extends Controller
 {
     /**
      * @Route("/ajout-produit", name="add_product")
+     * @param Request $request
+     * @param Environment $twig
+     * @param RegistryInterface $doctrine
+     * @return Response
      */
 
     public function addProduct(Request $request, Environment $twig, RegistryInterface $doctrine)

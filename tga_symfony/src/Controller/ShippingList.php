@@ -22,8 +22,7 @@ class ShippingList extends Controller
    * @Route("/", name="shipping_list")
    */
 
-  public function shippingList(Request $request, Environment $twig, RegistryInterface $doctrine)
-  {
+  public function shippingList(Request $request, Environment $twig, RegistryInterface $doctrine) {
           $shopitem = new ShoppingItem();
           $form = $this->createForm(ItemType::class, $shopitem);
 
@@ -38,15 +37,10 @@ class ShippingList extends Controller
           $items = $doctrine->getRepository(ShoppingItem::class)->findAll();
 
 
-      try {
           return new Response($twig->render('/shipping_list.html.twig', [
-              'items' => $items,
-              'form' => $form->createView()
+            'items' => $items,
+            'form' => $form->createView()
           ]));
-      } catch (\Twig_Error_Loader $e) {
-      } catch (\Twig_Error_Runtime $e) {
-      } catch (\Twig_Error_Syntax $e) {
-      }
 
   }
 }

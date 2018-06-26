@@ -22,7 +22,7 @@ class ItemType extends AbstractType
               'label' => 'Catégorie   ',
               'class' => ShoppingItem::class,
               'choice_label' => function($category) {
-                return $category->getCategory();
+                return $this->getCategory($category);
               },
             ])
         ;

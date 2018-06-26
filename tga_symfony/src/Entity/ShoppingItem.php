@@ -25,7 +25,7 @@ class ShoppingItem
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\ShoppingCategory", inversedBy="items")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $category;
 
