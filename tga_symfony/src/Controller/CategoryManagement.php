@@ -19,7 +19,8 @@ class CategoryManagement extends Controller
     /**
      * @Route("/categories", name="category_management")
      */
-     public function addCategory(Request $request, Environment $twig, RegistryInterface $doctrine, FormFactoryInterface $formFactory) {
+     public function addCategory(Request $request, Environment $twig, RegistryInterface $doctrine)
+     {
        {
              $category = new ShoppingCategory();
              $form = $this->createForm(CategoryType::class, $category);
@@ -35,11 +36,16 @@ class CategoryManagement extends Controller
              $items = $doctrine->getRepository(ShoppingCategory::class)->findAll();
 
 
-             return new Response($twig->render('/category_management.html.twig', [
-               'items' => $items,
-               'form' => $form->createView()
-             ]));
+           try {
+               return new Response($twig->render('/category_management.html.twig', [
+                   'items' => $items,
+                   'form' => $form->createView()
+               ]));
+           } catch (\Twig_Error_Loader $e) {
+           } catch (\Twig_Error_Runtime $e) {
+           } catch (\Twig_Error_Syntax $e) {
+           }
 
-     }
+       }
    }
 }

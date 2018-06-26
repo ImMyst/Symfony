@@ -19,32 +19,9 @@ class ShoppingCategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, ShoppingCategory::class);
     }
 
-//    /**
-//     * @return ShoppingCategory[] Returns an array of ShoppingCategory objects
-//     */
+    /**
+     * @return ShoppingCategory[] Returns an array of ShoppingCategory objects
+     */
     /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?ShoppingCategory
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
     */
 }

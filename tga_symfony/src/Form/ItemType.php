@@ -16,7 +16,7 @@ class ItemType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, array(
-              'label' => 'Produit       ',
+              'label' => 'Produit',
             ))
             ->add('category', EntityType::class, [
               'label' => 'Catégorie   ',

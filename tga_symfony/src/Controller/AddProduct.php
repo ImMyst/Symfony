@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\ShoppingItem;
 use App\Entity\ShoppingCategory;
+use App\Form\ItemType;
 use App\Repository\ShoppingItemRepository;
 use App\Repository\ShoppingCategoryRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -20,10 +21,32 @@ class AddProduct extends Controller
      * @Route("/ajout-produit", name="add_product")
      */
 
-    public function addProduct()
+    public function addProduct(Request $request, Environment $twig, RegistryInterface $doctrine)
     {
-        return $this->render('/add_product.html.twig'
+        $products = new ShoppingItem();
+        $form = $this->createForm(ItemType::class, $products);
 
-      );
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($products);
+            $em->flush();
+        }
+
+        $items = $doctrine->getRepository(ShoppingItem::class)->findAll();
+
+
+        try {
+            return new Response($twig->render('/shipping_list.html.twig', [
+                'items' => $items,
+                'form' => $form->createView()
+            ]));
+        } catch (\Twig_Error_Loader $e) {
+        } catch (\Twig_Error_Runtime $e) {
+        } catch (\Twig_Error_Syntax $e) {
+        }
+
     }
 }
+

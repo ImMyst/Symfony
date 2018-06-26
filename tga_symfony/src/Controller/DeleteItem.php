@@ -16,16 +16,20 @@ use Twig\Environment;
 class DeleteItem extends Controller
 {
     /**
-     * @Route("/suppression-produit", name="delete_item")
+     * @Route("/suppression-produit/{itemId}", name="delete_item")
      */
     public function deleteItem(Request $request, RegistryInterface $doctrine)
     {
-      $em = $this->getDoctrine()->getManager();
+        $items = new ShoppingItem();
 
-      if($request->METHOD_DELETE('delete'))
-          {
+
+
+            $em = $this->getDoctrine()->getManager();
             $em->remove($items);
-          }
+
+
+        $items = $doctrine->getRepository(ShoppingItem::class)->findAll();
+
           //the code that displays your table
         return $this->render('delete_item.html.twig'
         );

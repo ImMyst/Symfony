@@ -23,7 +23,7 @@
         <tr>
           <td>{{ item.category }}</td>
           <td>{{ item.title }}</td>
-          <td><a href="/suppression-produit/" + '$id'>Supprimer</a></td>
+          <td><a href="{{ url('delete_item') }}">Supprimer</a></td>
         </tr>
       {% endfor %}
     </tbody>
@@ -34,7 +34,7 @@
 <br>
   {{ form_start(form) }}
   {{ form_widget(form) }} <br>
-  <a href="/ajout-produit"><button class="btn btn-primary">Ajouter un produit</button></a>
+  <a href="{{ url('add_product') }}"><button class="btn btn-primary">Ajouter un produit</button></a>
   {{ form_end(form) }}
 </div>
 
