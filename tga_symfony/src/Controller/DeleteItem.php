@@ -5,6 +5,8 @@ use App\Entity\ShoppingItem;
 use App\Entity\ShoppingCategory;
 use App\Repository\ShoppingItemRepository;
 use App\Repository\ShoppingCategoryRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -16,29 +18,24 @@ use Twig\Environment;
 class DeleteItem extends Controller
 {
     /**
-     * @Route("/suppression-produit/{itemId}", name="delete_item")
-     * @param Environment $twig
+     * @Route("/suppression-produit/{$itemId}", name="delete_item")
      * @param RegistryInterface $doctrine
-     * @param $id
+     * @param $itemId
      * @return Response
      */
-//    public function deleteItem(Environment $twig, RegistryInterface $doctrine, $id)
-//    {
-//            $em = $this->getDoctrine()->getManager();
-//            $items = $em->getRepository('ShoppingItem')->findOneBy(array('id' => $id));
-//            $em->remove($items);
-//            $em->flush();
-//
-//        $items = $doctrine->getRepository(ShoppingCategory::class)->findAll();
-//
-//
-//        try {
-//            return new Response($twig->render('/shipping_list.html.twig', [
-//                'items' => $items
-//            ]));
-//        } catch (\Twig_Error_Loader $e) {
-//        } catch (\Twig_Error_Runtime $e) {
-//        } catch (\Twig_Error_Syntax $e) {
-//        }
-//    }
+    public function deleteItem(RegistryInterface $doctrine, $itemId)
+    {
+            $em = $this->getDoctrine()->getManager();
+            $items = $em->getRepository('ShoppingItem')->findOneBy(array('id' => $itemId));
+
+
+            $em->remove($items);
+            $em->flush();
+
+            $itemShop = $doctrine->getRepository(ShoppingCategory::class)->findAll();
+            return $this-> redirectToRoute('shipping_list', [
+                'items' => $itemShop
+             ]);
+
+        }
 }

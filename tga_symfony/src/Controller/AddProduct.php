@@ -41,15 +41,11 @@ class AddProduct extends Controller
         $items = $doctrine->getRepository(ShoppingItem::class)->findAll();
 
 
-        try {
-            return new Response($twig->render('/shipping_list.html.twig', [
+        return $this-> redirectToRoute('shipping_list', [
                 'items' => $items,
                 'form' => $form->createView()
-            ]));
-        } catch (\Twig_Error_Loader $e) {
-        } catch (\Twig_Error_Runtime $e) {
-        } catch (\Twig_Error_Syntax $e) {
-        }
+            ]);
+
 
     }
 }
