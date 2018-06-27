@@ -14,7 +14,8 @@ class ShoppingItem
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer") 
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $id;
     /**
@@ -25,7 +26,7 @@ class ShoppingItem
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\ShoppingCategory", inversedBy="items")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $category;
 

@@ -17,12 +17,12 @@ class ShoppingCategory
      * @ORM\Column(type="integer")
      * @ORM\OneToMany(targetEntity="App\Entity\ShoppingItem", mappedBy="id")
      */
-     private $id;
+    private $id;
 
-     public function __construct()
-     {
-         $this->id = new ArrayCollection();
-     }
+    public function __construct()
+    {
+        $this->id = new ArrayCollection();
+    }
 
     /**
      * @ORM\Column(type="string")
@@ -99,7 +99,7 @@ class ShoppingCategory
 
     public function __toString()
     {
-      return $this->name;
+        return $this->name;
     }
 
 }

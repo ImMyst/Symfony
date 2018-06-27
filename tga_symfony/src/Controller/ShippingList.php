@@ -18,30 +18,30 @@ use Twig\Environment;
 class ShippingList extends Controller
 
 {
-  /**
-   * @Route("/", name="shipping_list")
-   */
+    /**
+     * @Route("/", name="shipping_list")
+     */
 
-  public function shippingList(Request $request, Environment $twig, RegistryInterface $doctrine)
-  {
-          $shopitem = new ShoppingItem();
-          $form = $this->createForm(ItemType::class, $shopitem);
+    public function shippingList(Request $request, Environment $twig, RegistryInterface $doctrine)
+    {
+        $shopitem = new ShoppingItem();
+        $form = $this->createForm(ItemType::class, $shopitem);
 
-          $form->handleRequest($request);
-          if ($form->isSubmitted() && $form->isValid()) {
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($shopitem);
             $em->flush();
-          }
+        }
 
-          $items = $doctrine->getRepository(ShoppingItem::class)->findAll();
+        $items = $doctrine->getRepository(ShoppingItem::class)->findAll();
 
 
-          return new Response($twig->render('/shipping_list.html.twig', [
+        return $this-> redirectToRoute('/shipping_list.html.twig', [
             'items' => $items,
             'form' => $form->createView()
-          ]));
+        ]);
 
-  }
+    }
 }

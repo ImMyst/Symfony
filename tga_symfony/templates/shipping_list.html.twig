@@ -2,40 +2,40 @@
 
 {% block body %}
 
-<style>
-.wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    <style>
+        .wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
 
-</style>
+    </style>
 
-<div class="wrapper">
-  <h1>Ma liste de courses</h1>
-<br>
-<h3>Choses à acheter</h3>
-<br>
-  <table class="table table-striped">
-    {% if items is empty%}
-    <div class="alert alert-success">
-      <p>La liste de course est vide 👍</p>
+    <div class="wrapper">
+        <h1>Ma liste de courses</h1>
+        <br>
+        <h3>Choses à acheter</h3>
+        <br>
+        <table class="table table-striped">
+            {% if items is empty%}
+                <div class="alert alert-success">
+                    <p>La liste de course est vide 👍</p>
+                </div>
+            {% endif %}
+            <tbody>
+            {% for item in items|sort %}
+                <tr>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.title }}</td>
+                    <td><a href="{{ url('delete_item') }}">Supprimer</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <br>
+
+        <h3>Ajouter un produit</h3>
+        <br>
+        {{ form_start(form) }}
+        {{ form_widget(form) }} <br>
+        <a href="{{ url('add_product') }}"><button class="btn btn-primary">Ajouter un produit</button></a>
+        {{ form_end(form) }}
     </div>
-    {% endif %}
-    <tbody>
-      {% for item in items|sort %}
-        <tr>
-          <td>{{ item.category }}</td>
-          <td>{{ item.title }}</td>
-          <td><a href="{{ url('delete_item') }}">Supprimer</a></td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-<br>
-
-<h3>Ajouter un produit</h3>
-<br>
-  {{ form_start(form) }}
-  {{ form_widget(form) }} <br>
-  <a href="{{ url('add_product') }}"><button class="btn btn-primary">Ajouter un produit</button></a>
-  {{ form_end(form) }}
-</div>
 
 {% endblock %}

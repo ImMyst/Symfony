@@ -2,34 +2,34 @@
 
 {% block body %}
 
-<style>
-.wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    <style>
+        .wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
 
-</style>
+    </style>
 
-<div class="wrapper">
-  <h1>Ma liste de courses</h1>
-<br>
-<h3>Catégories</h3>
-<br>
-  <table class="table table-striped">
-    <tbody>
-      {% for item in items|sort %}
-        <tr>
-          <td>{{ item.name }}</td>
-            <td><a href="{{ url('delete_item') }}">Supprimer</a></td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-<br>
+    <div class="wrapper">
+        <h1>Ma liste de courses</h1>
+        <br>
+        <h3>Catégories</h3>
+        <br>
+        <table class="table table-striped">
+            <tbody>
+            {% for item in items|sort %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td><a href="{{ url('delete_item') }}">Supprimer</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <br>
 
-<h3>Ajouter une catégorie</h3>
-<br>
-  {{ form_start(form) }}
-  {{ form_widget(form) }} <br>
-  <a href="{{ url('category_management') }}"><button class="btn btn-primary">Ajouter une catégorie</button></a>
-  {{ form_end(form) }}
-</div>
+        <h3>Ajouter une catégorie</h3>
+        <br>
+        {{ form_start(form) }}
+        {{ form_widget(form) }} <br>
+        <a href="{{ url('category_management') }}"><button class="btn btn-primary">Ajouter une catégorie</button></a>
+        {{ form_end(form) }}
+    </div>
 
 {% endblock %}

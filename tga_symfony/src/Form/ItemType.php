@@ -12,18 +12,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ItemType extends AbstractType
 {
-      public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('title', TextType::class, [
-              'label' => 'Produit',
+                'label' => 'Produit',
             ])
             ->add('category', EntityType::class, [
-              'label' => 'Catégorie',
-              'class' => ShoppingCategory::class,
-              'choice_label' => function ($category) {
-                  return $category->getName();
-              }
+                'label' => 'Catégorie',
+                'class' => ShoppingCategory::class,
+                'choice_label' => function ($category) {
+                    return $category->getName();
+                }
             ])
         ;
     }

@@ -18,24 +18,23 @@ use Twig\Environment;
 class DeleteItem extends Controller
 {
     /**
-     * @Route("/suppression-produit/{$itemId}", name="delete_item")
+     * @Route("/suppression-produit/{$id}", name="delete_item")
      * @param RegistryInterface $doctrine
-     * @param $itemId
+     * @param ShoppingItem $id
      * @return Response
      */
-    public function deleteItem(RegistryInterface $doctrine, $itemId)
+    public function deleteItem(RegistryInterface $doctrine, ShoppingItem $id)
     {
-            $em = $this->getDoctrine()->getManager();
-            $items = $em->getRepository('ShoppingItem')->findOneBy(array('id' => $itemId));
+        $em = $this->getDoctrine()->getManager();
+        $items = $em->getRepository('ShoppingItem')->find($id);
 
+        $em->remove($items);
+        $em->flush();
 
-            $em->remove($items);
-            $em->flush();
+        $itemShop = $doctrine->getRepository(ShoppingItem::class)->findAll();
+        return $this-> redirectToRoute('shipping_list', [
+            'items' => $itemShop
+        ]);
 
-            $itemShop = $doctrine->getRepository(ShoppingCategory::class)->findAll();
-            return $this-> redirectToRoute('shipping_list', [
-                'items' => $itemShop
-             ]);
-
-        }
+    }
 }

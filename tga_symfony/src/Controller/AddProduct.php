@@ -42,9 +42,9 @@ class AddProduct extends Controller
 
 
         return $this-> redirectToRoute('shipping_list', [
-                'items' => $items,
-                'form' => $form->createView()
-            ]);
+            'items' => $items,
+            'form' => $form->createView()
+        ]);
 
 
     }

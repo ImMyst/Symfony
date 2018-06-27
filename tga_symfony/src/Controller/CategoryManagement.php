@@ -18,29 +18,33 @@ class CategoryManagement extends Controller
 {
     /**
      * @Route("/categories", name="category_management")
+     * @param Request $request
+     * @param RegistryInterface $doctrine
+     * @param FormFactoryInterface $formFactory
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-     public function addCategory(Request $request, Environment $twig, RegistryInterface $doctrine, FormFactoryInterface $formFactory)
-     {
-       {
-             $category = new ShoppingCategory();
-             $form = $this->createForm(CategoryType::class, $category);
+    public function addCategory(Request $request, RegistryInterface $doctrine, FormFactoryInterface $formFactory)
+    {
+        {
+            $category = new ShoppingCategory();
+            $form = $this->createForm(CategoryType::class, $category);
 
-             $form->handleRequest($request);
-             if ($form->isSubmitted() && $form->isValid()) {
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
 
-               $em = $this->getDoctrine()->getManager();
-               $em->persist($category);
-               $em->flush();
-             }
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($category);
+                $em->flush();
+            }
 
-             $items = $doctrine->getRepository(ShoppingCategory::class)->findAll();
+            $items = $doctrine->getRepository(ShoppingCategory::class)->findAll();
 
 
-             return new Response($twig->render('/category_management.html.twig', [
-               'items' => $items,
-               'form' => $form->createView()
-             ]));
+            return $this-> redirectToRoute('/category_management.html.twig', [
+                'items' => $items,
+                'form' => $form->createView()
+            ]);
 
-     }
-   }
+        }
+    }
 }
