@@ -19,11 +19,11 @@ class ItemType extends AbstractType
               'label' => 'Produit',
             ))
             ->add('category', EntityType::class, [
-              'label' => 'Catégorie   ',
+              'label' => 'Catégorie',
               'class' => ShoppingItem::class,
-              'choice_label' => function($category) {
-                return $this->getCategory($category);
-              },
+              'choice_label' => function ($category) {
+                  return $category;
+              }
             ])
         ;
     }
@@ -34,4 +34,5 @@ class ItemType extends AbstractType
             'data_class' => ShoppingItem::class,
         ]);
     }
+
 }

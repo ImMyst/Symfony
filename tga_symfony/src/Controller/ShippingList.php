@@ -22,7 +22,8 @@ class ShippingList extends Controller
    * @Route("/", name="shipping_list")
    */
 
-  public function shippingList(Request $request, Environment $twig, RegistryInterface $doctrine) {
+  public function shippingList(Request $request, Environment $twig, RegistryInterface $doctrine)
+  {
           $shopitem = new ShoppingItem();
           $form = $this->createForm(ItemType::class, $shopitem);
 

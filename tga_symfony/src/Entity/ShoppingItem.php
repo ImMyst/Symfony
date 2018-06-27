@@ -25,7 +25,7 @@ class ShoppingItem
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\ShoppingCategory", inversedBy="items")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $category;
 
@@ -88,5 +88,9 @@ class ShoppingItem
 
         return $this;
     }
+    public function __toString()
+    {
+        return $this->category;
 
+    }
 }
