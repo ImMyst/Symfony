@@ -38,10 +38,10 @@ class ShippingList extends Controller
         $items = $doctrine->getRepository(ShoppingItem::class)->findAll();
 
 
-        return $this-> redirectToRoute('/shipping_list.html.twig', [
+        return new Response($twig->render('/shipping_list.html.twig', [
             'items' => $items,
             'form' => $form->createView()
-        ]);
+        ]));
 
     }
 }

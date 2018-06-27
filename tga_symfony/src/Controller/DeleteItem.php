@@ -18,7 +18,7 @@ use Twig\Environment;
 class DeleteItem extends Controller
 {
     /**
-     * @Route("/suppression-produit/{$id}", name="delete_item")
+     * @Route("/suppression-produit/123/{$id}", name="delete_item")
      * @param RegistryInterface $doctrine
      * @param ShoppingItem $id
      * @return Response

@@ -19,11 +19,15 @@ class CategoryManagement extends Controller
     /**
      * @Route("/categories", name="category_management")
      * @param Request $request
+     * @param Environment $twig
      * @param RegistryInterface $doctrine
      * @param FormFactoryInterface $formFactory
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
-    public function addCategory(Request $request, RegistryInterface $doctrine, FormFactoryInterface $formFactory)
+    public function addCategory(Request $request, Environment $twig, RegistryInterface $doctrine, FormFactoryInterface $formFactory)
     {
         {
             $category = new ShoppingCategory();
@@ -40,10 +44,10 @@ class CategoryManagement extends Controller
             $items = $doctrine->getRepository(ShoppingCategory::class)->findAll();
 
 
-            return $this-> redirectToRoute('/category_management.html.twig', [
+            return new Response($twig->render('/category_management.html.twig', [
                 'items' => $items,
                 'form' => $form->createView()
-            ]);
+            ]));
 
         }
     }
