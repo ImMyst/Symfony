@@ -15,7 +15,7 @@ class ShoppingCategory
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     * @ORM\JoinColumn(nullable=false)
      * @ORM\OneToMany(targetEntity="App\Entity\ShoppingItem", mappedBy="id")
      */
     private $id;

@@ -40,11 +40,11 @@ class CategoryManagement extends Controller
                 $em->flush();
             }
 
-            $items = $doctrine->getRepository(ShoppingCategory::class)->findAll();
+            $category = $doctrine->getRepository(ShoppingCategory::class)->findAll();
 
 
             return new Response($twig->render('/category_management.html.twig', [
-                'items' => $items,
+                'categories' => $category,
                 'form' => $form->createView()
             ]));
 

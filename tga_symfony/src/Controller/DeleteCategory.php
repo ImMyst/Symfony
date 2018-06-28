@@ -12,13 +12,14 @@ class DeleteCategory extends Controller
     /**
      * @Route("/suppression-categorie/123/{id}", name="delete_category")
      * @param RegistryInterface $doctrine
-     * @param ShoppingCategory $id
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteCategory(RegistryInterface $doctrine, ShoppingCategory $id)
+    public function deleteCategory(RegistryInterface $doctrine, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository('ShoppingCategory')->find($id);
+        $category = $em->getRepository(ShoppingCategory::class)
+                       ->find($id);
 
         $em->remove($category);
         $em->flush();

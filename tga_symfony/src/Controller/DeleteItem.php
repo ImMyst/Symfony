@@ -19,7 +19,7 @@ class DeleteItem extends Controller
     public function deleteItem(RegistryInterface $doctrine, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $items = $em->getRepository('ShoppingItem')
+        $items = $em->getRepository(ShoppingItem::class)
                     ->find($id);
 
         $em->remove($items);

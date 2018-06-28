@@ -14,10 +14,10 @@
         <br>
         <table class="table table-striped">
             <tbody>
-            {% for item in items|sort %}
+            {% for category in categories %}
                 <tr>
-                    <td><b>{{ item.name }}</b></td>
-                    <td><a href="{{ url('delete_category', {'id': item.id}) }}">Supprimer</a></td>
+                    <td><b>{{ category.name }}</b></td>
+                    <td><a href="{{ url('delete_category', {'id': category.id}) }}">Supprimer</a></td>
                 </tr>
             {% endfor %}
             </tbody>
