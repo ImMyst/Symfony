@@ -15,7 +15,6 @@ class ShoppingItem
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer") 
-     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $id;
     /**

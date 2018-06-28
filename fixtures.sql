@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 22 juin 2018 à 11:25
+-- Généré le :  jeu. 28 juin 2018 à 09:07
 -- Version du serveur :  10.1.30-MariaDB
 -- Version de PHP :  7.2.2
 
@@ -37,9 +37,7 @@ CREATE TABLE `migration_versions` (
 --
 
 INSERT INTO `migration_versions` (`version`) VALUES
-('20180621163831'),
-('20180621164339'),
-('20180622085209');
+('20180626203808');
 
 -- --------------------------------------------------------
 
@@ -58,7 +56,7 @@ CREATE TABLE `shopping_category` (
 
 INSERT INTO `shopping_category` (`id`, `name`) VALUES
 (1, 'Animaux'),
-(2, 'Bébé');
+(2, 'Boisson alcoolisé');
 
 -- --------------------------------------------------------
 
@@ -68,18 +66,19 @@ INSERT INTO `shopping_category` (`id`, `name`) VALUES
 
 CREATE TABLE `shopping_item` (
   `id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category` int(11) NOT NULL
+  `category_id` int(11) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `shopping_item`
 --
 
-INSERT INTO `shopping_item` (`id`, `title`, `category`) VALUES
-(1, 'Croquettes', 1),
-(2, 'Litière 10kg', 1),
-(3, 'Couches', 2);
+INSERT INTO `shopping_item` (`id`, `category_id`, `title`) VALUES
+(1, 1, 'Croquette'),
+(2, 1, 'Litière'),
+(3, 2, 'Bières'),
+(4, 2, 'Vin');
 
 --
 -- Index pour les tables déchargées
@@ -102,7 +101,7 @@ ALTER TABLE `shopping_category`
 --
 ALTER TABLE `shopping_item`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_6612795F9777D11E` (`category`);
+  ADD KEY `IDX_6612795F12469DE2` (`category_id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -118,7 +117,7 @@ ALTER TABLE `shopping_category`
 -- AUTO_INCREMENT pour la table `shopping_item`
 --
 ALTER TABLE `shopping_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Contraintes pour les tables déchargées
@@ -128,7 +127,7 @@ ALTER TABLE `shopping_item`
 -- Contraintes pour la table `shopping_item`
 --
 ALTER TABLE `shopping_item`
-  ADD CONSTRAINT `FK_6612795F9777D11E` FOREIGN KEY (`category`) REFERENCES `shopping_category` (`id`);
+  ADD CONSTRAINT `FK_6612795F12469DE2` FOREIGN KEY (`category_id`) REFERENCES `shopping_category` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

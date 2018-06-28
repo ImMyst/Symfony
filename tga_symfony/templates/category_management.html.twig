@@ -16,7 +16,7 @@
             <tbody>
             {% for item in items|sort %}
                 <tr>
-                    <td>{{ item.name }}</td>
+                    <td><b>{{ item.name }}</b></td>
                     <td><a href="{{ url('delete_category') }}">Supprimer</a></td>
                 </tr>
             {% endfor %}
