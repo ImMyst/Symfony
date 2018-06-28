@@ -20,6 +20,13 @@ class ShippingList extends Controller
 {
     /**
      * @Route("/", name="shipping_list")
+     * @param Request $request
+     * @param Environment $twig
+     * @param RegistryInterface $doctrine
+     * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
 
     public function shippingList(Request $request, Environment $twig, RegistryInterface $doctrine)

@@ -23,7 +23,7 @@
                 <tr>
                     <td><b>{{ item.category }}</b></td>
                     <td>{{ item.title }}</td>
-                    <td><a href="{{ url('delete_item') }}">Supprimer</a></td>
+                    <td><a href="{{ url('delete_item', {'id': item.id}) }}">Supprimer</a></td>
                 </tr>
             {% endfor %}
             </tbody>

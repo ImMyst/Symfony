@@ -21,13 +21,12 @@ class CategoryManagement extends Controller
      * @param Request $request
      * @param Environment $twig
      * @param RegistryInterface $doctrine
-     * @param FormFactoryInterface $formFactory
      * @return Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function addCategory(Request $request, Environment $twig, RegistryInterface $doctrine, FormFactoryInterface $formFactory)
+    public function addCategory(Request $request, Environment $twig, RegistryInterface $doctrine)
     {
         {
             $category = new ShoppingCategory();
