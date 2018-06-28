@@ -20,13 +20,13 @@ class DeleteItem extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $items = $em->getRepository(ShoppingItem::class)
-                    ->find($id);
+            ->find($id);
 
         $em->remove($items);
         $em->flush();
 
         $items = $doctrine->getRepository(ShoppingItem::class)
-                          ->findAll();
+            ->findAll();
 
         return $this-> redirectToRoute('shipping_list', [
             'items' => $items

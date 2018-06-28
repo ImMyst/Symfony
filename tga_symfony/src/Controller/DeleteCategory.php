@@ -19,7 +19,7 @@ class DeleteCategory extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $category = $em->getRepository(ShoppingCategory::class)
-                       ->find($id);
+            ->find($id);
 
         $em->remove($category);
         $em->flush();
